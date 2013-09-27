@@ -137,7 +137,7 @@ if __name__ == "__main__":
             #log.debug("Found histogram: %s", name)
             # Start the errors from scratch
             reset_bin_errors(histo)
-
+            #from pdb import set_trace; set_trace()
             # Apply shape shifts
             if name in p_shape_weight:
                 for shape, shape_shift in p_shape_weight[name].iteritems():
@@ -145,7 +145,7 @@ if __name__ == "__main__":
                              bin, name, shape, shape_shift)
                     up = bin_directory.Get(name + "_" + shape + "Up")
                     down = bin_directory.Get(name + "_" + shape + "Down")
-                    apply_postfit_shape(histo, up, down, shape_shift, 0)
+                    apply_postfit_shape(histo, up, down, shape_shift, p_shape_unc[name][shape])
 
             # Apply normalization scale
             if name in p_weight:
